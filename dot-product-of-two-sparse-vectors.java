@@ -13,6 +13,9 @@ class SparseVector {
     
 	// Return the dotProduct of two sparse vectors
     public int dotProduct(SparseVector vec) {
+        // Optimization
+        if(indexMap.size() > vec.indexMap.size())
+            return vec.dotProduct(this);
         int productSum = 0;
         for(int index : indexMap.keySet()){
             Integer val = indexMap.get(index);
