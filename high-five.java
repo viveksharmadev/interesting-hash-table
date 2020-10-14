@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/high-five/
 class high-five {
-    // tc -> nlogn, sc-> n
+    // tc -> nlogn(I think it is nlog5), sc-> n
     public int[][] highFive(int[][] items) {        
         if(items==null || items.length==0)
             return items;
