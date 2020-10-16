@@ -29,3 +29,34 @@ class Solution {
         return true;
     }
 }
+
+// Same Code but little more clear on conditions
+class Solution {
+    // tc -> n, sc-> n
+    public boolean wordPattern(String pattern, String s) {
+        String[] arr = s.split("\\s");
+        
+        if(pattern.length() != arr.length)
+            return false;
+        
+        Map<Character, String> map = new HashMap<>();
+        
+        Set<String> visited = new HashSet<>();
+        
+        for(int i=0; i<arr.length; i++){
+            char c = pattern.charAt(i);
+            
+            if(!map.containsKey(c)){
+                if(visited.contains(arr[i]))
+                    return false;
+                
+                visited.add(arr[i]);
+                map.put(c, arr[i]);                
+            }else if(!arr[i].equals(map.get(c))){               
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+}
