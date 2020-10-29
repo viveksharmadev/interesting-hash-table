@@ -38,3 +38,48 @@ class Solution {
         return res.toString();
     }
 }
+
+// May be easier to understand
+class Solution {
+    // tc -> n, sc-> n
+    public String fractionToDecimal(int numerator, int denominator) {
+        if(numerator == 0) return "0";
+        
+        long num = Math.abs((long) numerator);
+        long den = Math.abs((long) denominator);
+        
+        String sign = (numerator < 0 ^ denominator < 0) 
+                      ? "-" : "";
+        
+        StringBuilder result = new StringBuilder();
+        result.append(sign);        
+        result.append(num/den);
+        
+        long rem = num%den;
+        
+        if(rem==0) return result.toString();
+        
+        result.append(".");
+        
+        Map<Long, Integer> map = new HashMap<>();
+        
+        while(rem != 0){
+            
+            if(map.containsKey(rem)){
+                int index = map.get(rem);
+                return result.substring(0, index) 
+                    + "("  + result.substring(index) + ")";
+            }
+            
+            else{
+                map.put(rem, result.length());
+            }
+            
+            rem *= 10;
+            result.append(rem/den);
+            rem %= den;            
+        }
+        
+        return result.toString();
+    }
+}
